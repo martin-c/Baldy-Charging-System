@@ -3880,9 +3880,9 @@ design rules under a new name.</description>
 <contactref element="D13" pad="1"/>
 <wire x1="94.234" y1="59.69" x2="94.234" y2="46.228" width="0.254" layer="1"/>
 <wire x1="94.234" y1="46.228" x2="94.234" y2="44.958" width="0.254" layer="1"/>
-<wire x1="85.09" y1="16.51" x2="94.234" y2="16.637" width="0.254" layer="1"/>
-<via x="94.234" y="16.637" extent="1-16" drill="0.508"/>
-<wire x1="94.234" y1="16.637" x2="94.234" y2="46.228" width="0.254" layer="16"/>
+<wire x1="85.09" y1="16.51" x2="94.234" y2="16.51" width="0.254" layer="1"/>
+<via x="94.234" y="16.51" extent="1-16" drill="0.508"/>
+<wire x1="94.234" y1="16.51" x2="94.234" y2="46.228" width="0.254" layer="16"/>
 <wire x1="94.234" y1="46.355" x2="94.234" y2="46.228" width="0.254" layer="16"/>
 <via x="94.234" y="46.228" extent="1-16" drill="0.508"/>
 </signal>
@@ -3909,13 +3909,15 @@ design rules under a new name.</description>
 <contactref element="D13" pad="2"/>
 <contactref element="C15" pad="2"/>
 <wire x1="90.17" y1="44.538" x2="90.17" y2="46.609" width="0.254" layer="1"/>
-<wire x1="90.17" y1="46.609" x2="86.868" y2="46.609" width="0.254" layer="1"/>
-<wire x1="86.868" y1="46.609" x2="86.868" y2="50.292" width="0.254" layer="1"/>
-<wire x1="86.868" y1="50.292" x2="76.2" y2="50.292" width="0.254" layer="1"/>
-<wire x1="76.2" y1="50.292" x2="76.2" y2="55.88" width="0.254" layer="1"/>
+<wire x1="90.17" y1="46.609" x2="90.1192" y2="46.609" width="0.254" layer="1"/>
+<wire x1="90.1192" y1="46.609" x2="86.868" y2="46.609" width="0" layer="19" extent="1-16"/>
+<wire x1="86.868" y1="46.609" x2="86.868" y2="50.292" width="0" layer="19" extent="1-16"/>
+<wire x1="86.868" y1="50.292" x2="76.2" y2="50.292" width="0" layer="19" extent="1-16"/>
+<wire x1="76.2" y1="50.292" x2="76.2" y2="55.88" width="0" layer="19" extent="1-16"/>
 <wire x1="93.218" y1="44.958" x2="93.218" y2="43.815" width="0.254" layer="1"/>
 <wire x1="93.218" y1="43.815" x2="90.893" y2="43.815" width="0.254" layer="1"/>
 <wire x1="90.893" y1="43.815" x2="90.17" y2="44.538" width="0.254" layer="1"/>
+<via x="90.1192" y="46.609" extent="1-16" drill="0.6"/>
 </signal>
 <signal name="N$89">
 <contactref element="U2" pad="6"/>

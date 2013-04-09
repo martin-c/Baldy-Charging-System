@@ -8954,8 +8954,6 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 <wire x1="210.82" y1="45.72" x2="210.82" y2="40.64" width="0.1524" layer="91"/>
 <junction x="210.82" y="45.72"/>
 <pinref part="CON2" gate="A" pin="3"/>
-<junction x="210.82" y="40.64"/>
-<junction x="215.9" y="40.64"/>
 </segment>
 <segment>
 <pinref part="GND4" gate="1" pin="GND"/>
@@ -9147,7 +9145,6 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 <wire x1="192.786" y1="91.44" x2="192.786" y2="47.752" width="0.1524" layer="91"/>
 <junction x="192.786" y="47.752"/>
 <pinref part="CON2" gate="A" pin="4"/>
-<junction x="208.28" y="40.64"/>
 </segment>
 </net>
 <net name="N$97" class="0">
@@ -9162,7 +9159,6 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 <wire x1="198.374" y1="93.98" x2="198.374" y2="49.276" width="0.1524" layer="91"/>
 <junction x="198.374" y="49.276"/>
 <pinref part="CON2" gate="A" pin="2"/>
-<junction x="213.36" y="40.64"/>
 </segment>
 </net>
 <net name="+VBAT" class="0">

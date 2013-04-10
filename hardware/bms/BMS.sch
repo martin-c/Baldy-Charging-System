@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.3">
+<eagle version="6.4">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -7604,6 +7604,7 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 <part name="C17" library="rcl" deviceset="C-US" device="C0603" value="0.1uF"/>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
 <part name="D13" library="m_diode" deviceset="TPD4E001" device="DBV"/>
+<part name="C18" library="rcl" deviceset="C-US" device="C0603" value="0.1uF"/>
 </parts>
 <sheets>
 <sheet>
@@ -7921,6 +7922,7 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 <instance part="C17" gate="G$1" x="193.04" y="142.24"/>
 <instance part="GND4" gate="1" x="193.04" y="132.08"/>
 <instance part="D13" gate="G$1" x="248.92" y="55.88"/>
+<instance part="C18" gate="G$1" x="226.06" y="134.62"/>
 </instances>
 <busses>
 </busses>
@@ -9035,9 +9037,9 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 <wire x1="261.62" y1="83.82" x2="261.62" y2="96.52" width="0.1524" layer="91"/>
 <wire x1="261.62" y1="96.52" x2="238.76" y2="96.52" width="0.1524" layer="91"/>
 <junction x="238.76" y="96.52"/>
-<pinref part="D13" gate="G$1" pin="IO2"/>
-<wire x1="241.3" y1="58.42" x2="238.76" y2="58.42" width="0.1524" layer="91"/>
 <wire x1="238.76" y1="58.42" x2="238.76" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="D13" gate="G$1" pin="IO2"/>
+<wire x1="238.76" y1="58.42" x2="241.3" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$86" class="0">
@@ -9057,10 +9059,10 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 <wire x1="241.3" y1="83.82" x2="251.46" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="241.3" y1="83.82" x2="241.3" y2="68.58" width="0.1524" layer="91"/>
 <junction x="241.3" y="83.82"/>
-<wire x1="241.3" y1="68.58" x2="236.22" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="236.22" y1="68.58" x2="236.22" y2="55.88" width="0.1524" layer="91"/>
-<pinref part="D13" gate="G$1" pin="IO1"/>
-<wire x1="236.22" y1="55.88" x2="241.3" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="241.3" y1="68.58" x2="259.08" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="259.08" y1="68.58" x2="259.08" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="D13" gate="G$1" pin="IO3"/>
+<wire x1="259.08" y1="58.42" x2="256.54" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND1" class="0">
@@ -9077,7 +9079,8 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 <pinref part="CON5" gate="A" pin="1"/>
 <pinref part="CON4" gate="A" pin="1"/>
 <wire x1="246.38" y1="147.32" x2="256.54" y2="147.32" width="0.1524" layer="91"/>
-<wire x1="246.38" y1="147.32" x2="246.38" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="246.38" y1="147.32" x2="246.38" y2="127" width="0.1524" layer="91"/>
+<wire x1="246.38" y1="127" x2="246.38" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="246.38" y1="124.46" x2="256.54" y2="124.46" width="0.1524" layer="91"/>
 <junction x="246.38" y="124.46"/>
 <wire x1="246.38" y1="124.46" x2="246.38" y2="86.36" width="0.1524" layer="91"/>
@@ -9086,6 +9089,10 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 <wire x1="246.38" y1="149.86" x2="246.38" y2="147.32" width="0.1524" layer="91"/>
 <junction x="246.38" y="149.86"/>
 <junction x="246.38" y="147.32"/>
+<pinref part="C18" gate="G$1" pin="2"/>
+<wire x1="226.06" y1="129.54" x2="226.06" y2="127" width="0.1524" layer="91"/>
+<wire x1="226.06" y1="127" x2="246.38" y2="127" width="0.1524" layer="91"/>
+<junction x="246.38" y="127"/>
 </segment>
 <segment>
 <pinref part="D13" gate="G$1" pin="GND"/>
@@ -9106,13 +9113,14 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 <pinref part="D18" gate="G$1" pin="C"/>
 </segment>
 </net>
-<net name="N$90" class="0">
+<net name="VDD1" class="0">
 <segment>
 <pinref part="CON5" gate="A" pin="6"/>
 <wire x1="233.68" y1="111.76" x2="256.54" y2="111.76" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="VDD1@1"/>
 <pinref part="CON4" gate="A" pin="6"/>
-<wire x1="233.68" y1="147.32" x2="233.68" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="233.68" y1="147.32" x2="233.68" y2="139.7" width="0.1524" layer="91"/>
+<wire x1="233.68" y1="139.7" x2="233.68" y2="134.62" width="0.1524" layer="91"/>
 <wire x1="233.68" y1="134.62" x2="233.68" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="233.68" y1="111.76" x2="233.68" y2="76.2" width="0.1524" layer="91"/>
 <junction x="233.68" y="111.76"/>
@@ -9131,6 +9139,10 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 <wire x1="233.68" y1="66.04" x2="228.6" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="228.6" y1="66.04" x2="228.6" y2="60.96" width="0.1524" layer="91"/>
 <junction x="233.68" y="66.04"/>
+<pinref part="C18" gate="G$1" pin="1"/>
+<wire x1="226.06" y1="137.16" x2="226.06" y2="139.7" width="0.1524" layer="91"/>
+<wire x1="226.06" y1="139.7" x2="233.68" y2="139.7" width="0.1524" layer="91"/>
+<junction x="233.68" y="139.7"/>
 </segment>
 </net>
 <net name="N$96" class="0">
@@ -9296,10 +9308,7 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 </net>
 <net name="N$83" class="0">
 <segment>
-<pinref part="D13" gate="G$1" pin="IO3"/>
-<wire x1="259.08" y1="58.42" x2="256.54" y2="58.42" width="0.1524" layer="91"/>
-<wire x1="259.08" y1="58.42" x2="259.08" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="259.08" y1="71.12" x2="236.22" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="55.88" x2="236.22" y2="81.28" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="VIA"/>
 <wire x1="233.68" y1="152.4" x2="236.22" y2="152.4" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="152.4" x2="236.22" y2="137.16" width="0.1524" layer="91"/>
@@ -9313,8 +9322,9 @@ The TPD4E001 is available in DRL, DBV (SOT-23), DCK (SC-70), DRS (QFN), and DPK 
 <pinref part="CON3" gate="A" pin="5"/>
 <wire x1="236.22" y1="114.3" x2="236.22" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="81.28" x2="251.46" y2="81.28" width="0.1524" layer="91"/>
-<wire x1="236.22" y1="71.12" x2="236.22" y2="81.28" width="0.1524" layer="91"/>
 <junction x="236.22" y="81.28"/>
+<pinref part="D13" gate="G$1" pin="IO1"/>
+<wire x1="236.22" y1="55.88" x2="241.3" y2="55.88" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

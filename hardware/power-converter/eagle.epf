@@ -1,5 +1,5 @@
 [Eagle]
-Version="06 03 02"
+Version="06 04 00"
 Platform="Mac OS X"
 Serial="6C05814057-LS-WLM-1CS"
 Globals="Globals"
@@ -331,10 +331,10 @@ UsedLibrary="/Users/martin/muwatt/eagle_library/misc/m_misc.lbr"
 
 [Win_1]
 Type="Control Panel"
-Loc="282 96 1439 869"
+Loc="92 22 1249 795"
 State=2
 Number=0
 
 [Desktop]
-Screen="4000 1440"
+Screen="1440 900"
 Window="Win_1"

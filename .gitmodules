@@ -1,0 +1,3 @@
+[submodule "firmware/bms-dev/xenon-lib"]
+	path = firmware/bms-dev/xenon-lib
+	url = git@github.com:martin-c/xenon-lib.git

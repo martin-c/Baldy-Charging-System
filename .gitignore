@@ -1,3 +1,12 @@
+*.eep
+*.lss
+*.lst
+*.map
+*.o
+*.sym
+*.dep
+.idea
+*.xcodeproj
 hardware/power-converter/power-converter.b#1
 hardware/power-converter/power-converter.b#2
 hardware/power-converter/power-converter.s#1

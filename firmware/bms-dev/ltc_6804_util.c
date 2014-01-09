@@ -1,8 +1,8 @@
 
 /*! \file
- * File:        ltc6804_util.c
+ * File:        ltc_6804_util.c
  * Author:      Martin Clemons
- * Created:     August 5, 2013
+ * Created:     January 8, 2014
  *
  * Basic utility functions for communication with the LTC6804 Battery Stack Monitor.
  * Created for Extended Lab, ECEN5623 Summer 2013.
@@ -25,22 +25,10 @@
  *
  */
 
-#include "ltc6804_regs.h"
-#include "ltc6804_util.h"
-//#include "beagle_spi.h"
+#include "ltc_6804_registers.h"
+#include "ltc_6804_util.h"
 #include <stdio.h>
-//#include <unistd.h>
-//#include <stdlib.h>
-//#include <stdbool.h>
-//#include <fcntl.h>
-//#include <string.h>
-
-//#include <sys/ioctl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-
-//#include <linux/types.h>
-//#include <linux/spi/spidev.h>
+#include <string.h>
 
 
 
@@ -49,6 +37,7 @@
 /***         Private Global Variables           ***/
 
 // PEC calculation table
+// TODO: put this table into flash memory
 static int16_t pec15Table[256];
 
 
@@ -70,8 +59,8 @@ static enum ltc6804_PEC_e checkGroupPec(uint8_t *b);
  *  \param reg2 Pointer to second 16 bit register.
  *  \param reg3 Pointer to third 16 bit register.
  */
-static inline void decodeReg(uint8_t *buf, uint16_t *reg1, uint16_t *reg2, uint16_t *reg3) {
-
+static inline void decodeReg(uint8_t *buf, uint16_t *reg1, uint16_t *reg2, uint16_t *reg3)
+{
     *reg1 = buf[0] | ((uint16_t)buf[1]) << 8;
     *reg2 = buf[2] | ((uint16_t)buf[3]) << 8;
     *reg3 = buf[4] | ((uint16_t)buf[5]) << 8;
@@ -82,10 +71,10 @@ static inline void decodeReg(uint8_t *buf, uint16_t *reg1, uint16_t *reg2, uint1
  *  \return Function returns PEC_OK if calculated PEC from 6 data bytes matches
  *  PEC received in 7th and 8th byte. Function returns PEC_ERROR on mis-match.
  */
-static enum ltc6804_PEC_e checkGroupPec(uint8_t *b) {
-
-    uint16_t pec = ltc6804util_calcPec(b, 6);              // PEC of data bytes
-    uint16_t rxPec = ((uint16_t)b[6]) << 8 | b[7];        // received PEC
+static enum ltc6804_PEC_e checkGroupPec(uint8_t *b)
+{
+    uint16_t pec = ltc6804_util_calcPec(b, 6);           // PEC of data bytes
+    uint16_t rxPec = ((uint16_t)b[6]) << 8 | b[7];      // received PEC
     if (pec != rxPec) {
         return PEC_ERROR;
     }
@@ -99,7 +88,7 @@ static enum ltc6804_PEC_e checkGroupPec(uint8_t *b) {
 /*! Pre-compute PEC15 checksum table for fast checksumming.
  *  Function is based on code supplied in the LTC6804 datasheet.
  */
-void ltc6804util_initPec(void)
+void ltc6804_util_initPec(void)
 {
     const int16_t CRC15_POLY = 0x4599;
     int i;
@@ -123,7 +112,7 @@ void ltc6804util_initPec(void)
  *  \param len Length in bytes of data to be checksummed.
  *  \return Function returns PEC15 checksum of data, << by 1 bit.
  */
-uint16_t ltc6804util_calcPec(uint8_t *data, int len)
+uint16_t ltc6804_util_calcPec(uint8_t *data, int len)
 {
     uint16_t remainder, address;
     int i;
@@ -141,8 +130,8 @@ uint16_t ltc6804util_calcPec(uint8_t *data, int len)
  *  \param soc SOC ADC value.
  *  \return Sum of Cells voltage.
  */
-double ltc6804util_convertSoc(uint16_t soc) {
-
+double ltc6804_util_convertSoc(uint16_t soc)
+{
     return soc * 100E-6 * 20;
 }
 
@@ -150,8 +139,8 @@ double ltc6804util_convertSoc(uint16_t soc) {
  *  \param itmp ADC value.
  *  \return Internal Die Temperature in deg. C.
  */
-double ltc6804util_convertItmp(uint16_t itmp) {
-
+double ltc6804_util_convertItmp(uint16_t itmp)
+{
     return itmp * 100E-6 / 7.5E-3 - 273.0;
 }
 
@@ -159,8 +148,8 @@ double ltc6804util_convertItmp(uint16_t itmp) {
  *  \param v VA or VD ADC value.
  *  \return Analog (VA) or digital (VD) supply voltage.
  */
-double ltc6804util_convertVa_Vd(uint16_t v) {
-
+double ltc6804_util_convertVa_Vd(uint16_t v)
+{
     return v * 100E-6;
 }
 
@@ -168,8 +157,8 @@ double ltc6804util_convertVa_Vd(uint16_t v) {
  *  \param v V_cell or V_GPIO ADC value.
  *  \return Analog voltage sensed by ADC.
  */
-double ltc6804util_convertV(uint16_t v) {
-
+double ltc6804_util_convertV(uint16_t v)
+{
     return v * 100E-6;
 }
 
@@ -179,8 +168,8 @@ double ltc6804util_convertV(uint16_t v) {
  *  \param b buffer into which encoded command + PEC should be written.
  *  Buffer needs to be at least 4 bytes long.
  */
-void ltc6804util_encodeCommand(uint8_t addr, enum ltc6804_command_codes_e cmd, uint8_t *b) {
-
+void ltc6804_util_encodeCommand(uint8_t addr, enum ltc6804_command_codes_e cmd, uint8_t *b)
+{
     if (b == NULL) {
         return;
     }
@@ -191,8 +180,8 @@ void ltc6804util_encodeCommand(uint8_t addr, enum ltc6804_command_codes_e cmd, u
     // see table 33 in '6804 datasheet for more information on bit layout.
     b[0] = 0x80 | (addr << 3) | cmdHi;
     b[1] = cmdLo;
-    uint16_t pec = ltc6804util_calcPec(b, 2);  // PEC of command bytes
-    b[2] = (uint8_t)(pec >> 8);                // pec hi
+    uint16_t pec = ltc6804_util_calcPec(b, 2);  // PEC of command bytes
+    b[2] = (uint8_t)(pec >> 8);                 // pec hi
     b[3] = (uint8_t)pec;                       // pec lo
 }
 
@@ -200,8 +189,8 @@ void ltc6804util_encodeCommand(uint8_t addr, enum ltc6804_command_codes_e cmd, u
  *  \param g Pointer to register group struct into which register data will be copied.
  *  \param b Pointer to buffer containing register data to be decoded.
  */
-void ltc6804util_decodeStatA(void *g, uint8_t *b) {
-
+void ltc6804_util_decodeStatA(void *g, uint8_t *b)
+{
     struct ltc6804_stat_reg_a_s *r = g;
     // test PEC
     if (checkGroupPec(b) == PEC_ERROR) {
@@ -217,8 +206,8 @@ void ltc6804util_decodeStatA(void *g, uint8_t *b) {
  *  \param g Pointer to register group struct into which register data will be copied.
  *  \param b Pointer to buffer containing register data to be decoded.
  */
-void ltc6804util_decodeStatB(void *g, uint8_t *b) {
-
+void ltc6804_util_decodeStatB(void *g, uint8_t *b)
+{
     struct ltc6804_stat_reg_b_s *r = g;
     // test PEC
     if (checkGroupPec(b) == PEC_ERROR) {
@@ -246,8 +235,8 @@ void ltc6804util_decodeStatB(void *g, uint8_t *b) {
  *  \param g Pointer to register group struct into which register data will be copied.
  *  \param b Pointer to buffer containing register data to be decoded.
  */
-void ltc6804util_decodeCfg(void *g, uint8_t *b) {
-
+void ltc6804_util_decodeCfg(void *g, uint8_t *b)
+{
     struct ltc6804_cfg_reg_s *r = g;
     // test PEC
     if (checkGroupPec(b) == PEC_ERROR) {
@@ -269,7 +258,7 @@ void ltc6804util_decodeCfg(void *g, uint8_t *b) {
  *  \param b Pointer to buffer into which register data will be encoded. Must be
  *  at least 8 bytes in size.
  */
-void ltc6804util_encodeCfg(uint8_t *b, void *g) {
+void ltc6804_util_encodeCfg(uint8_t *b, void *g) {
 
     struct ltc6804_cfg_reg_s *r = g;
     // copy bytes
@@ -282,7 +271,7 @@ void ltc6804util_encodeCfg(uint8_t *b, void *g) {
     b[4] = (uint8_t)r->dcc;
     b[5] = (uint8_t)(r->dcc >> 8) | (r->dcto & 0x0F) << 4;
     // calculate and encode PEC
-    uint16_t pec = ltc6804util_calcPec(b, 6);  // PEC of data bytes
+    uint16_t pec = ltc6804_util_calcPec(b, 6);  // PEC of data bytes
     b[6] = (uint8_t)(pec >> 8);                // data pec hi
     b[7] = (uint8_t)pec;                       // data pec lo
 }
@@ -291,7 +280,7 @@ void ltc6804util_encodeCfg(uint8_t *b, void *g) {
  *  \param g Pointer to register group struct into which register data will be copied.
  *  \param b Pointer to buffer containing register data to be decoded.
  */
-void ltc6804util_decodeCV(void *g, uint8_t *b) {
+void ltc6804_util_decodeCV(void *g, uint8_t *b) {
 
     struct ltc6804_cell_voltage_reg_s *r = g;
     // test PEC
@@ -306,7 +295,7 @@ void ltc6804util_decodeCV(void *g, uint8_t *b) {
  *  \param g Pointer to register group struct into which register data will be copied.
  *  \param b Pointer to buffer containing register data to be decoded.
  */
-void ltc6804util_decodeAuxA(void *g, uint8_t *b) {
+void ltc6804_util_decodeAuxA(void *g, uint8_t *b) {
 
     struct ltc6804_aux_reg_a_s *r = g;
     // test PEC
@@ -321,7 +310,7 @@ void ltc6804util_decodeAuxA(void *g, uint8_t *b) {
  *  \param g Pointer to register group struct into which register data will be copied.
  *  \param b Pointer to buffer containing register data to be decoded.
  */
-void ltc6804util_decodeAuxB(void *g, uint8_t *b) {
+void ltc6804_util_decodeAuxB(void *g, uint8_t *b) {
 
     struct ltc6804_aux_reg_b_s *r = g;
     // test PEC

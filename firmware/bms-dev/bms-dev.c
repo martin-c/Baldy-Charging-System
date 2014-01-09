@@ -35,6 +35,8 @@ static void initPins(device_t *d)
     PORTB.DIRSET = PIN0_bm;
     // debug port
     PORTD.DIRSET = PIN3_bm;
+    // SPI interface to LTC6820
+    PORTE.DIRSET = PIN4_bm | PIN5_bm | PIN7_bm;
 }
 
 static void led_test(device_t *d)

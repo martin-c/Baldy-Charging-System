@@ -67,7 +67,8 @@ TARGET = bms-dev
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC +=
+SRC += ltc_6804.c
+SRC += ltc_6804_util.c
 # xenon-lib
 SRC += xenon-lib/task-scheduler.c xenon-lib/timer.c xenon-lib/clock.c xenon-lib/dma.c xenon-lib/debug.c xenon-lib/usart.c
 #
@@ -163,7 +164,7 @@ PRINTF_LIB_FLOAT = -Wl,-u,vfprintf -lprintf_flt
 # If this is left blank, then it will use the Standard printf version.
 PRINTF_LIB =
 #PRINTF_LIB = $(PRINTF_LIB_MIN)
-#PRINTF_LIB = $(PRINTF_LIB_FLOAT)
+PRINTF_LIB = $(PRINTF_LIB_FLOAT)
 
 
 # Minimalistic scanf version
@@ -178,7 +179,7 @@ SCANF_LIB =
 #SCANF_LIB = $(SCANF_LIB_FLOAT)
 
 MATH_LIB =
-#MATH_LIB = -lm
+MATH_LIB = -lm
 
 
 

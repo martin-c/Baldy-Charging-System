@@ -1,0 +1,26 @@
+G04*
+G04 Format:               Gerber RS-274X*
+G04 Layer:                BoardOutline*
+G04 This File Name:       bms.gm1*
+G04 Source File Name:     bms.rrb*
+G04 Unique ID:            f0a94124-7116-492a-8d2f-4ebec7e5445f*
+G04 Generated Date:       Thursday, 13 March 2014 15:34:31*
+G04*
+G04 Created Using:        Robot Room Copper Connection v2.5.5143*
+G04 Software Contact:     http://www.robotroom.com/CopperConnection/Support.aspx*
+G04 License Number:       1402*
+G04*
+G04 Zero Suppression:     Leading*
+G04 Number Precision:     2.4*
+G04*
+%FSLAX24Y24*%
+%MOIN*%
+%LNBoardEdge*%
+%ADD10R,.006X.006*%
+D10*
+G01X0Y26000D02*
+X45000D01*
+Y0D01*
+X0D01*
+Y26000D01*
+M02*
